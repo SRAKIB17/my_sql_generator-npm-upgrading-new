@@ -1,3 +1,5 @@
+import { includeType } from "./includeType"
+
 interface simpleOperation {
     "="?: { [field_name: string]: number | string | unknown },
     ">"?: { [field_name: string]: number | string | unknown },
@@ -6,16 +8,13 @@ interface simpleOperation {
     "<="?: { [field_name: string]: number | string | unknown },
     "!="?: { [field_name: string]: number | string | unknown }
 }
-interface includeType {
-    "$not_include"?: {
-        "$or"?: simpleOperation,
-        "$and"?: simpleOperation,
-    } | { [field_name: string]: string[] | number[] | any[], }
-    ,
-    "$include"?: {
-        "$or"?: simpleOperation,
-        "$and"?: simpleOperation,
-    } | { [field_name: string]: string[] | number[] | any[], },
+
+
+
+type pattern = {
+    "$start"?: string | number,
+    "$end"?: string | number,
+    "$both"?: string | number,
 }
 
 interface patternType {
@@ -24,9 +23,15 @@ interface patternType {
             "$start"?: string | number,
             "$end"?: string | number,
             "$both"?: string | number,
-        } | {
-            "$or"?: simpleOperation,
-            "$and"?: simpleOperation,
+        }
+        |
+        {
+            "$or"?: {
+                [field_name: string]: pattern
+            },
+            "$and"?: {
+                [field_name: string]: pattern
+            }
         }
     },
     "$not_pattern"?: {
@@ -34,11 +39,17 @@ interface patternType {
             "$start"?: string | number,
             "$end"?: string | number,
             "$both"?: string | number,
-        } | {
-            "$or"?: simpleOperation,
-            "$and"?: simpleOperation,
         }
-    },
+        |
+        {
+            "$or"?: {
+                [field_name: string]: pattern
+            },
+            "$and"?: {
+                [field_name: string]: pattern
+            }
+        }
+    }
 }
 
 interface betweenType {
