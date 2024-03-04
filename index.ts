@@ -1,16 +1,16 @@
-import genSelectSql from "./MySQL/@select"
-import genInsertSql from "./MySQL/@insert"
-import genUpdateSql from "./MySQL/@update"
-import genDeleteSql from "./MySQL/@delete"
-import queryGenModel from './MySQL/@createModel'
-import genRdmsSql from './MySQL/@genRdmsSql'
+// import genSelectSql from "./MySQL/@select"
+// import genInsertSql from "./MySQL/@insert"
+// import genUpdateSql from "./MySQL/@update"
+// import genDeleteSql from "./MySQL/@delete"
+// import queryGenModel from './MySQL/@createModel'
+// import genRdmsSql from './MySQL/@genRdmsSql'
+export * from "./mysql_gen";
 
-
-export {
-    genSelectSql,
-    genInsertSql,
-    genUpdateSql,
-    genDeleteSql,
-    queryGenModel,
-    genRdmsSql
-}
+// export {
+//     genSelectSql,
+//     genInsertSql,
+//     genUpdateSql,
+//     genDeleteSql,
+//     queryGenModel,
+//     genRdmsSql
+// }
