@@ -25,6 +25,7 @@ interface includeType {
     } | $include,
 }
 
+
 // ! ***************** Include ************************
 
 // ! ***************** Patter ************************
@@ -74,14 +75,19 @@ interface betweenType {
         "$or"?: between,
         "$and"?: between
     },
+    "$not_between"?: between | {
+        "$or"?: between,
+        "$and"?: between
+    },
 }
+
 // ! ***************** betweenType ************************
 
 
 
 export interface AndOrCondition extends simpleOperation, includeType, patternType, betweenType {
-    "$and": simpleOperation,
-    "$or": simpleOperation,
+    "$and"?: simpleOperation,
+    "$or"?: simpleOperation,
     [field_name: string]: unknown
 }
 
