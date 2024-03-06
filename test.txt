@@ -1,0 +1,17 @@
+https://sharp.pixelplumbing.com/
+https://www.npmjs.com/package/mysql2
+https://docs.expo.dev/build-reference/apk/?fbclid=IwAR1oikE3D0Ctk8tQLi4-yL0rxBDl28AzkqEkHALIPZdobG8-Qj0sqnNNljA
+https://expo.dev/
+https://www.npmjs.com/package/@react-native-async-storage/async-storage
+https://nodejs.org/docs/latest/api/
+https://code.visualstudio.com/docs
+https://nodemailer.com/
+https://nextjs.org/docs?
+https://www.w3.org/Style/CSS/Overview.en.html
+https://html.com/
+https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics
+https://jwt.io/
+https://axios-http.com/docs/intro
+https://react.dev
+https://expressjs.com/en/4x/api.html
+https://reactnative.dev/

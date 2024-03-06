@@ -84,35 +84,35 @@ const simpleOperatorCheck = (operator: any) => {
 
 export const only_other_condition = (value: any, pre_field = '', condition = '', rdmsTable = '') => {
 
-    const checkRdmsTable = rdmsTable ? ` ${rdmsTable}.` : ''
+    const checkRdmsTable = rdmsTable ? ` ${rdmsTable}.` : '';
 
-    const or = Object.keys(value).includes('$or')
+    const or = Object.keys(value).includes('$or');
     return Object.entries(value).map((c, index, arr) => {
-        const field = c[0]
-        const value: any = c[1]
-        const check_separator = ['$eq', '$gt', '$lt', '$lte', '$gte', '$not_eq', "=", ">", "<", ">=", "<=", "!="]
-        const special_operator = ['$between', '$include', '$not_include', '$pattern', '$not_pattern']
+        const field = c[0];
+        const value: any = c[1];
+        const check_separator = ['$eq', '$gt', '$lt', '$lte', '$gte', '$not_eq', "=", ">", "<", ">=", "<=", "!="];
+        const special_operator = ['$between', '$include', '$not_include', '$pattern', '$not_pattern'];
         if (special_operator.includes(field.toLowerCase())) {
 
             const include = (value, method = '', operation = ' AND ') => {
                 return `(${Object.entries(value).map(inc => {
-                    const include_field = inc[0]
-                    const include_value = inc[1]
+                    const include_field = inc[0];
+                    const include_value = inc[1];
                     if (include_field.toLowerCase() == '$or' || include_field.toLowerCase() == '$and') {
                         return include(include_value, method)
                     }
                     else {
-                        return "(" + (checkRdmsTable + include_field) + (method == 'not' ? " NOT IN " : " IN ") + `(${JSON.stringify(include_value).slice(1, -1)}))`
+                        return "(" + (checkRdmsTable + include_field) + (method == 'not' ? " NOT IN " : " IN ") + `(${JSON.stringify(include_value).slice(1, -1)}))`;
                     }
                 }).join(operation)})`
             }
             const pattern = (value, method = '', operation = " AND ") => {
 
                 return Object.entries(value).map((inc, index, arr) => {
-                    const pattern_field = inc[0]
-                    const pattern_value: any = inc[1]
+                    const pattern_field = inc[0];
+                    const pattern_value: any = inc[1];
                     if (pattern_field.toLowerCase() == '$or' || pattern_field.toLowerCase() == '$and') {
-                        return pattern(pattern_value, method, pattern_field?.toUpperCase())
+                        return pattern(pattern_value, method, pattern_field?.toUpperCase());
                     }
                     else {
                         let matchPattern = `${checkRdmsTable + pattern_field} ${method == 'not' ? "NOT LIKE" : "LIKE"} `
@@ -120,18 +120,18 @@ export const only_other_condition = (value: any, pre_field = '', condition = '',
 
                         switch (check[0]) {
                             case '$end':
-                                matchPattern += JSON.stringify('%' + check[1])
+                                matchPattern += JSON.stringify('%' + check[1]);
                                 break;
                             case '$start':
-                                matchPattern += JSON.stringify(check[1] + '%')
+                                matchPattern += JSON.stringify(check[1] + '%');
                                 break;
                             case '$both':
-                                matchPattern += JSON.stringify('%' + check[1] + '%')
+                                matchPattern += JSON.stringify('%' + check[1] + '%');
                                 break;
                             default:
                                 break;
                         }
-                        return `(${matchPattern})`
+                        return `(${matchPattern})`;
                     }
                 }).join(operation)
             }
