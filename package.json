@@ -1,6 +1,6 @@
 {
   "name": "mysql-query-geniex",
-  "version": "1.00.02",
+  "version": "1.00.03",
   "description": "Your ultimate companion for MySQL database management, featuring an intuitive query builder and advanced SQL generation capabilities to streamline complex database operations.",
   "main": "index.js",
   "types": "index.d.ts",
