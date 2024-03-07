@@ -16,8 +16,9 @@ type simpleOp =
     { "!="?: number | string | unknown }
 
 export interface simpleOperation {
-    [field_name: string]: simpleOp | simpleOp[]
+    [field_name: string]: simpleOp | simpleOp[] | unknown
 }
+
 /**
  * Recursively generates MySQL conditions based on the provided input.
  * @param type - The type of condition.

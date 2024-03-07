@@ -1,8 +1,8 @@
 // Importing functions and types for processing conditions
-import { BetweenConditions, between, betweenType } from "./between";
+import { between, betweenConditions, betweenType } from "./between";
 import { checkCondition, simpleOperation } from "./checkCondition";
-import { $include, IncludeConditions, includeType } from "./include";
-import { PatternConditions, patternType } from "./pattern";
+import { $include, includeConditions, includeType } from "./include";
+import { patternConditions, patternType } from "./pattern";
 
 /**
  * Combines all condition types into one.
@@ -42,6 +42,7 @@ export function Condition(condition: Condition, subOperator = "AND") {
  * Exports types and functions related to condition processing.
  */
 export {
-    $include, BetweenConditions, IncludeConditions, PatternConditions, between, betweenType,
-    checkCondition, includeType, patternType, simpleOperation
+    $include, between, betweenConditions, betweenType,
+    checkCondition, includeConditions, includeType, patternConditions, patternType, simpleOperation
 };
+

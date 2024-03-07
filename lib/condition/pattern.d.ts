@@ -52,7 +52,7 @@ export function processPatternConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated PATTERN conditions as a string.
  */
-export function PatternConditions(
+export function patternConditions(
     condition: patternType,
     subOperator?: string
 ): string;

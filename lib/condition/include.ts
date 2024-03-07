@@ -59,7 +59,7 @@ export function processIncludeConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated INCLUDE conditions as a string.
  */
-export function IncludeConditions(condition: includeType, subOperator = 'AND'): string {
+export function includeConditions(condition: includeType, subOperator = 'AND'): string {
     let sqlConditions = "";
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {

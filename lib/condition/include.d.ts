@@ -38,7 +38,7 @@ export function processIncludeConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated INCLUDE conditions as a string.
  */
-export function IncludeConditions(
+export function includeConditions(
     condition: includeType,
     subOperator?: string
 ): string;

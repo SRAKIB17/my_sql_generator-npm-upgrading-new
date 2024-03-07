@@ -9,8 +9,9 @@ type simpleOp =
     { "!="?: number | string | unknown }
 
 export interface simpleOperation {
-    [field_name: string]: simpleOp | simpleOp[]
+    [field_name: string]: simpleOp | simpleOp[] | unknown
 }
+
 // ! ***************** simpleOperation ************************
 
 // ! ***************** Include ************************
@@ -31,7 +32,7 @@ interface includeType {
 
 // ! ***************** Include ************************
 
-// ! ***************** Pattern ************************
+// ! ***************** Patter ************************
 
 
 
@@ -60,7 +61,7 @@ interface patternType {
     }
 }
 
-// ! ***************** Pattern ************************
+// ! ***************** Patter ************************
 // ! ***************** betweenType ************************
 type between = {
     [field_name: string]: {
@@ -82,9 +83,12 @@ interface betweenType {
 
 // ! ***************** betweenType ************************
 
-// interface AllCombine extends simpleOperation, includeType, patternType, betweenType { }
+interface AllCombine extends simpleOperation, includeType, patternType, betweenType, simpleOperation {
+}
 
 export interface AndOrCondition extends simpleOperation, includeType, patternType, betweenType {
-    "$and"?: any,
-    "$or"?: any
+    "$and"?: AllCombine,
+    "$or"?: AllCombine,
+    [field_name: string]: unknown
 }
+

@@ -44,7 +44,7 @@ export function processBetweenConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated BETWEEN conditions as a string.
  */
-export function BetweenConditions(
+export function betweenConditions(
     condition: betweenType,
     subOperator?: string
 ): string;

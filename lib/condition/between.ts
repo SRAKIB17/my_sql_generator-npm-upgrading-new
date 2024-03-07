@@ -60,7 +60,7 @@ export function processBetweenConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated BETWEEN conditions as a string.
  */
-export function BetweenConditions(condition: betweenType, subOperator = 'AND') {
+export function betweenConditions(condition: betweenType, subOperator = 'AND') {
     let sqlConditions = "";
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {

@@ -66,7 +66,7 @@ export function processPatternConditions(
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated PATTERN conditions as a string.
  */
-export function PatternConditions(condition: patternType, subOperator = 'AND'): string {
+export function patternConditions(condition: patternType, subOperator = 'AND'): string {
     let sqlConditions = "";
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {
