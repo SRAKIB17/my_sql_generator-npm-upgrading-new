@@ -8,4 +8,6 @@
 .env*.local
 package-lock.json
 tsconfig.json
-/lib copy
+
+/lib/*.ts
+index.ts

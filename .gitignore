@@ -15,3 +15,6 @@ yarn-error.log*
 # local files
 .env*.local
 package-lock.json
+
+/lib/*.js
+index.js
