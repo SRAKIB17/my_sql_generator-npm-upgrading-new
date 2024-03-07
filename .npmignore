@@ -6,6 +6,6 @@
 /new
 
 .env*.local
-*.ts
 package-lock.json
 tsconfig.json
+/lib copy

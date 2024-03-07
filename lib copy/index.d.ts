@@ -7,7 +7,7 @@ import {
     includeType,
     patternType,
     simpleOperation,
-} from "./condition/index";
+} from "./condition";
 import genQueryDeleteSql from "./genQueryDeleteSql";
 import genQueryInsertSql from "./genQueryInsertSql";
 import genQueryMultipleInsertSql from "./genQueryMultipleInsertSql";
