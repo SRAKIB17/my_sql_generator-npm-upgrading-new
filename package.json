@@ -24,8 +24,5 @@
     "crud",
     "node",
     "generator"
-  ],
-  "dependencies": {
-    "typescript": "^5.4.2"
-  }
+  ]
 }
