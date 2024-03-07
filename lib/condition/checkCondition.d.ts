@@ -3,12 +3,13 @@
  * Defines the structure of simple operations.
  */
 export interface simpleOperation {
-    "="?: { [field_name: string]: number | string | unknown },
-    ">"?: { [field_name: string]: number | string | unknown },
-    "<"?: { [field_name: string]: number | string | unknown },
-    ">="?: { [field_name: string]: number | string | unknown },
-    "<="?: { [field_name: string]: number | string | unknown },
-    "!="?: { [field_name: string]: number | string | unknown }
+    [field_name: string]:
+    { "="?: number | string | unknown } |
+    { ">"?: number | string | unknown } |
+    { "<"?: number | string | unknown } |
+    { ">="?: number | string | unknown } |
+    { "<="?: number | string | unknown } |
+    { "!="?: number | string | unknown }
 }
 
 /**

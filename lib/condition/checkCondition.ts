@@ -1,22 +1,22 @@
 // Importing functions for processing BETWEEN, INCLUDE, and PATTERN conditions
+import { Condition } from ".";
 import { processBetweenConditions } from "./between";
 import { processIncludeConditions } from "./include";
 import { processPatternConditions } from "./pattern";
+
 /**
- * Regular expression for identifying simple operations.
+ * Defines the structure of simple operations.
  */
-const simpleOperationRegex = /"(=|>|<|>=|<=|!=)":\s*\{("[^"]+":\s*(?:"[^"]+"|\d+)),?\s*\}/g;
-/**
- * Function to convert simple operation to SQL condition.
- * @param operation - The simple operation string.
- * @returns The SQL condition string.
- */
-function simpleOperationToSQL(operation) {
-    const match = operation?.match(/"(=|>|<|>=|<=|!=)":\s*\{(".*?"):\s*(.*?)\}/);
-    const operator = match[1];
-    const field = JSON.parse(match[2]);
-    const value = JSON.stringify(match[3]);
-    return `${field} ${operator} ${value}`;
+type simpleOp =
+    { "="?: number | string | unknown } |
+    { ">"?: number | string | unknown } |
+    { "<"?: number | string | unknown } |
+    { ">="?: number | string | unknown } |
+    { "<="?: number | string | unknown } |
+    { "!="?: number | string | unknown }
+
+export interface simpleOperation {
+    [field_name: string]: simpleOp | simpleOp[]
 }
 /**
  * Recursively generates MySQL conditions based on the provided input.
@@ -25,7 +25,7 @@ function simpleOperationToSQL(operation) {
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated MySQL conditions as a string.
  */
-export function checkCondition({ type, conditions, subOperator }) {
+export function checkCondition({ type, conditions, subOperator }: { type: string, conditions: any, subOperator: string }) {
     if (["$not_between", "$between"]?.includes(type)) {
         let operatorBetweenKeyword = type?.includes('not') ? 'NOT' : '';
         return `(${processBetweenConditions(conditions, operatorBetweenKeyword, subOperator)})`;
@@ -39,15 +39,23 @@ export function checkCondition({ type, conditions, subOperator }) {
         return `(${processPatternConditions(conditions, operatorKeyword, subOperator)})`;
     }
     else if (["$and", "$or"]?.includes(type)) {
-        return `(${checkCondition({ type: "", conditions: conditions, subOperator: type?.includes("or") ? "OR" : "AND" })})`;
+        const subOperator = type?.includes("or") ? "OR" : "AND";
+        return `(${Condition(conditions, subOperator)})`;
     }
     else {
-        const simpleOperations = JSON.stringify(conditions).match(simpleOperationRegex);
-        let subCondition = [];
-        if (simpleOperations) {
-            simpleOperations.forEach(operation => {
-                subCondition.push(`(${simpleOperationToSQL(operation)})`);
-            });
+        let subCondition: string[] = [];
+        if (Array.isArray(conditions)) {
+            const fieldConditions: string = conditions?.map(condition => {
+                const operator = Object?.keys(condition)?.[0];
+                const value = condition[operator];
+                return `(${type} ${operator} ${JSON.stringify(value)})`;
+            })?.join(` ${subOperator} `);
+            subCondition.push(fieldConditions)
+        }
+        else {
+            const operator = Object.keys(conditions)[0];
+            const value = conditions?.[operator];
+            subCondition.push(`(${type} ${operator} ${JSON.stringify(value)})`);
         }
         return subCondition.join(` ${subOperator} `);
     }
