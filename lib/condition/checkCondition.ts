@@ -1,23 +1,9 @@
 // Importing functions for processing BETWEEN, INCLUDE, and PATTERN conditions
-import { condition } from ".";
+import { conditions as recursiveConditions } from ".";
 import { processBetweenConditions } from "./between";
 import { processIncludeConditions } from "./include";
 import { processPatternConditions } from "./pattern";
-
-/**
- * Defines the structure of simple operations.
- */
-type simpleOp =
-    { "="?: number | string | unknown } |
-    { ">"?: number | string | unknown } |
-    { "<"?: number | string | unknown } |
-    { ">="?: number | string | unknown } |
-    { "<="?: number | string | unknown } |
-    { "!="?: number | string | unknown }
-
-export interface simpleOperation {
-    [field_name: string]: simpleOp | simpleOp[] | unknown
-}
+import { processSimpleOperationConditions } from "./simpleOperation";
 
 /**
  * Recursively generates MySQL conditions based on the provided input.
@@ -41,23 +27,13 @@ export function checkCondition({ type, conditions, subOperator }: { type: string
     }
     else if (["$and", "$or"]?.includes(type)) {
         const subOperator = type?.includes("or") ? "OR" : "AND";
-        return `(${condition(conditions, subOperator)})`;
+        return `(${recursiveConditions(conditions, subOperator)})`;
     }
     else {
-        let subCondition: string[] = [];
-        if (Array.isArray(conditions)) {
-            const fieldConditions: string = conditions?.map(condition => {
-                const operator = Object?.keys(condition)?.[0];
-                const value = condition[operator];
-                return `(${type} ${operator} ${JSON.stringify(value)})`;
-            })?.join(` ${subOperator} `);
-            subCondition.push(fieldConditions)
-        }
-        else {
-            const operator = Object.keys(conditions)[0];
-            const value = conditions?.[operator];
-            subCondition.push(`(${type} ${operator} ${JSON.stringify(value)})`);
-        }
-        return subCondition.join(` ${subOperator} `);
+        return processSimpleOperationConditions({
+            conditions: conditions,
+            subOperator: subOperator,
+            type: type
+        });
     }
 }

@@ -40,7 +40,6 @@ export function processIncludeConditions(
         } else {
             const conditionsList: string[] = [];
             if (Array.isArray(value)) {
-                // const valuesStr = value.map(v => typeof v === 'string' ? `'${v}'` : v).join(', ');
                 const valuesStr = JSON.stringify(value)?.slice(1, -1);
                 conditionsList.push(`${key} ${operatorKeyword} (${valuesStr})`);
             }
@@ -64,9 +63,8 @@ export function includeConditions(condition: includeType, subOperator = 'AND'): 
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {
         let includeOperatorKeyword = type?.includes('not') ? 'NOT IN' : 'IN';
-        sqlConditions += `${sqlConditions ? " AND " : ""}${processIncludeConditions({
-            conditions: conditions
-        }, includeOperatorKeyword, subOperator)}`
+        sqlConditions += `${sqlConditions ? " AND " : ""}${processIncludeConditions(conditions, includeOperatorKeyword, subOperator)}`
     })
     return sqlConditions?.trim();
 }
+

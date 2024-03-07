@@ -2,20 +2,21 @@
  * Importing functions and types for processing conditions
  */
 import { between, betweenConditions, betweenType } from "./between";
-import { checkCondition, simpleOperation } from "./checkCondition";
+import { checkCondition } from "./checkCondition";
 import { $include, includeConditions, includeType } from "./include";
 import { patternType } from "./pattern";
+import { simpleOperationType, simpleOperationConditions } from "./simpleOperation";
 
 /**
  * Combines all condition types into one.
  */
-interface AllCombine extends simpleOperation, includeType, patternType, betweenType, simpleOperation {
+interface AllCombine extends simpleOperationType, includeType, patternType, betweenType {
 }
 
 /**
  * Defines the structure of a condition object.
  */
-export interface condition extends simpleOperation, includeType, patternType, betweenType {
+export interface condition extends simpleOperationType, includeType, patternType, betweenType {
     "$and"?: AllCombine,
     "$or"?: AllCombine,
     [field_name: string]: unknown
@@ -27,13 +28,13 @@ export interface condition extends simpleOperation, includeType, patternType, be
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated conditions as a string.
  */
-export declare function condition(condition: condition, subOperator?: string): string;
+export declare function conditions(condition: condition, subOperator?: string): string;
 
 /**
  * Exports types and functions related to condition processing.
  */
 export {
     $include, between, betweenConditions, betweenType,
-    checkCondition, includeConditions, includeType, patternType, simpleOperation
+    checkCondition, includeConditions, includeType, patternType, simpleOperationType, simpleOperationConditions
 };
 

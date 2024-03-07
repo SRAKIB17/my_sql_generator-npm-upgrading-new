@@ -1,19 +1,20 @@
 // Importing functions and types for processing conditions
 import { between, betweenConditions, betweenType } from "./between";
-import { checkCondition, simpleOperation } from "./checkCondition";
+import { checkCondition } from "./checkCondition";
 import { $include, includeConditions, includeType } from "./include";
 import { patternConditions, patternType } from "./pattern";
+import { simpleOperationType, simpleOperationConditions } from "./simpleOperation";
 
 /**
  * Combines all condition types into one.
  */
-interface AllCombine extends simpleOperation, includeType, patternType, betweenType, simpleOperation {
+interface AllCombine extends simpleOperationType, includeType, patternType, betweenType, simpleOperationType {
 }
 
 /**
  * Defines the structure of a condition object.
  */
-export interface condition extends simpleOperation, includeType, patternType, betweenType {
+export interface condition extends simpleOperationType, includeType, patternType, betweenType {
     "$and"?: AllCombine,
     "$or"?: AllCombine,
     [field_name: string]: unknown
@@ -25,7 +26,7 @@ export interface condition extends simpleOperation, includeType, patternType, be
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated conditions as a string.
  */
-export function condition(condition: condition, subOperator = "AND") {
+export function conditions(condition: condition, subOperator = "AND") {
     let sqlConditions = "";
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {
@@ -42,7 +43,15 @@ export function condition(condition: condition, subOperator = "AND") {
  * Exports types and functions related to condition processing.
  */
 export {
-    $include, between, betweenConditions, betweenType,
-    checkCondition, includeConditions, includeType, patternConditions, patternType, simpleOperation
+    $include,
+    between,
+    betweenConditions,
+    betweenType,
+    checkCondition,
+    includeConditions,
+    includeType,
+    patternConditions,
+    patternType,
+    simpleOperationType, simpleOperationConditions
 };
 

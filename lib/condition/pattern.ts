@@ -1,27 +1,26 @@
+
 /**
  * Defines the structure of the "patternType" interface.
  */
 export interface patternType {
     "$pattern"?: {
-        [field_name: string]: string |
-        {
-            "$or"?: {
-                [field_name: string]: string
-            },
-            "$and"?: {
-                [field_name: string]: string
-            }
+        [field_name: string]: string
+    } | {
+        "$or"?: {
+            [field_name: string]: string
+        },
+        "$and"?: {
+            [field_name: string]: string
         }
     },
     "$not_pattern"?: {
-        [field_name: string]: string |
-        {
-            "$or"?: {
-                [field_name: string]: string
-            },
-            "$and"?: {
-                [field_name: string]: string
-            }
+        [field_name: string]: string
+    } | {
+        "$or"?: {
+            [field_name: string]: string
+        },
+        "$and"?: {
+            [field_name: string]: string
         }
     }
 }
@@ -45,7 +44,9 @@ export function processPatternConditions(
             }
         }
     }, operatorKeyword: string, subOperator: string): string {
+
     const subConditions: string[] = [];
+
     for (const [key, value] of Object.entries(conditions)) {
         const subOperator = key === "$or" ? "OR" : "AND";
         if (typeof value === 'object' && ["$or", "$and"]?.includes(key)) {
@@ -71,9 +72,8 @@ export function patternConditions(condition: patternType, subOperator = 'AND'): 
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {
         const operatorKeyword = type.includes('not') ? 'NOT' : '';
-        sqlConditions += `${sqlConditions ? " AND " : ""}${processPatternConditions({
-            conditions: conditions
-        }, operatorKeyword, subOperator)}`
+        sqlConditions += `${sqlConditions ? ` ${subOperator} ` : ""}${processPatternConditions(conditions, operatorKeyword, subOperator)}`
     })
     return sqlConditions?.trim();
 }
+

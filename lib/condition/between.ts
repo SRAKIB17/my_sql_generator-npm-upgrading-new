@@ -65,9 +65,7 @@ export function betweenConditions(condition: betweenType, subOperator = 'AND') {
     let inputEntries = Object.entries(condition);
     inputEntries.forEach(([type, conditions], index) => {
         let operatorBetweenKeyword = type?.includes('not') ? 'NOT' : '';
-        sqlConditions += `${sqlConditions ? " AND " : ""}${processBetweenConditions({
-            conditions: conditions
-        }, operatorBetweenKeyword, subOperator)}`
+        sqlConditions += `${sqlConditions ? " AND " : ""}${processBetweenConditions(conditions, operatorBetweenKeyword, subOperator)}`
     })
     return sqlConditions?.trim();
 }
