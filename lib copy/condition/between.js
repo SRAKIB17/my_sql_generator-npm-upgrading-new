@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.betweenConditions = exports.processBetweenConditions = void 0;
 /**
- * Processes the "between" conditions recursively to generate SQL statements.
- * @param conditions The "between" conditions to be processed.
- * @param operatorKeyword The keyword for the SQL operator, if any.
- * @param subOperator The sub-operator for combining conditions.
- * @returns The processed SQL conditions.
+ * Processes pattern conditions recursively.
+ * @param conditions - The between or pattern condition object.
+ * @param operatorKeyword - The keyword to be used before the condition.
+ * @param subOperator - The sub-operator to be used between multiple conditions.
+ * @returns The generated pattern conditions as a string.
  */
 function processBetweenConditions(conditions, operatorKeyword, subOperator) {
     var _a;
@@ -29,10 +29,10 @@ function processBetweenConditions(conditions, operatorKeyword, subOperator) {
 }
 exports.processBetweenConditions = processBetweenConditions;
 /**
- * Generates SQL conditions for the "between" type.
- * @param condition The "between" conditions to be processed.
- * @param subOperator The sub-operator for combining conditions.
- * @returns The SQL conditions for the "between" type.
+ * Generates SQL-like BETWEEN conditions based on the provided input.
+ * @param condition - The betweenType object containing conditions.
+ * @param subOperator - The sub-operator to be used between multiple conditions.
+ * @returns The generated BETWEEN conditions as a string.
  */
 function betweenConditions(condition, subOperator) {
     if (subOperator === void 0) { subOperator = 'AND'; }
