@@ -15,7 +15,7 @@ interface AllCombine extends simpleOperation, includeType, patternType, betweenT
 /**
  * Defines the structure of a condition object.
  */
-export interface Condition extends simpleOperation, includeType, patternType, betweenType {
+export interface condition extends simpleOperation, includeType, patternType, betweenType {
     "$and"?: AllCombine,
     "$or"?: AllCombine,
     [field_name: string]: unknown
@@ -27,7 +27,7 @@ export interface Condition extends simpleOperation, includeType, patternType, be
  * @param subOperator - The sub-operator to be used between multiple conditions.
  * @returns The generated conditions as a string.
  */
-export declare function Condition(condition: Condition, subOperator?: string): string;
+export declare function condition(condition: condition, subOperator?: string): string;
 
 /**
  * Exports types and functions related to condition processing.

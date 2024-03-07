@@ -1,5 +1,5 @@
 // Importing functions for processing BETWEEN, INCLUDE, and PATTERN conditions
-import { Condition } from ".";
+import { condition } from ".";
 import { processBetweenConditions } from "./between";
 import { processIncludeConditions } from "./include";
 import { processPatternConditions } from "./pattern";
@@ -41,7 +41,7 @@ export function checkCondition({ type, conditions, subOperator }: { type: string
     }
     else if (["$and", "$or"]?.includes(type)) {
         const subOperator = type?.includes("or") ? "OR" : "AND";
-        return `(${Condition(conditions, subOperator)})`;
+        return `(${condition(conditions, subOperator)})`;
     }
     else {
         let subCondition: string[] = [];
