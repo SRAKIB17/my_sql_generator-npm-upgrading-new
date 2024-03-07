@@ -1,4 +1,20 @@
-// beta: https://www.npmjs.com/package/mysql-query-gen?activeTab=readme
+/**
+ * Generates a SQL SELECT query string for relational database management systems (RDMS) based on the provided parameters.
+ * 
+ * @param table_list - An object containing table names.
+ * @param relation_key - An object defining table relations.
+ * @param specific_column - An object defining specific columns to select.
+ * @param limitSkip - An object defining limit and skip for pagination.
+ * @param condition - A string defining SQL conditions.
+ * @param sort - An object defining sorting criteria.
+ * @param havingCondition - A string defining HAVING clause conditions.
+ * @param groupBY - An array defining columns for GROUP BY clause.
+ * @param min - A string defining the column to calculate minimum value.
+ * @param max - A string defining the column to calculate maximum value.
+ * @param count - A string defining the column to count.
+ * @param sum - A string defining the column to calculate sum.
+ * @returns The generated SQL SELECT query string.
+ */
 
 const genQueryRdmsSql = ({
     table_list = {
@@ -202,7 +218,7 @@ const genQueryRdmsSql = ({
         "table7"?: string[],
         "table8"?: string[],
     },
-    limitSkip?: { limit?: string | undefined | number, skip?: string | undefined | number },
+    limitSkip?: { limit?: string | number, skip?: string | number },
     condition?: string,
     sort?: {
         table1?: [string, number],
@@ -301,6 +317,5 @@ const genQueryRdmsSql = ({
     sql += `${getGroupBy ? getGroupBy : ""} ${havingCondition ? " HAVING " + havingCondition : ''}${sorting ? sorting : ''}${limit_skip ? limit_skip : ""}`
     return sql;
 };
-
 
 export default genQueryRdmsSql;

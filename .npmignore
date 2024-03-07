@@ -3,7 +3,9 @@
 
 # testing
 /test-directory
+/new
 
 .env*.local
-
+.ts
 package-lock.json
+tsconfig.json

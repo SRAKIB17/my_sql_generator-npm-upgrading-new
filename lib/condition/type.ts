@@ -30,32 +30,28 @@ interface includeType {
 
 // ! ***************** Patter ************************
 
-type $pattern = {
-    "$start"?: string | number,
-    "$end"?: string | number,
-    "$both"?: string | number,
-}
+
 
 interface patternType {
     "$pattern"?: {
-        [field_name: string]: $pattern |
+        [field_name: string]: string |
         {
             "$or"?: {
-                [field_name: string]: $pattern
+                [field_name: string]: string
             },
             "$and"?: {
-                [field_name: string]: $pattern
+                [field_name: string]: string
             }
         }
     },
     "$not_pattern"?: {
-        [field_name: string]: $pattern |
+        [field_name: string]: string |
         {
             "$or"?: {
-                [field_name: string]: $pattern
+                [field_name: string]: string
             },
             "$and"?: {
-                [field_name: string]: $pattern
+                [field_name: string]: string
             }
         }
     }
@@ -83,11 +79,12 @@ interface betweenType {
 
 // ! ***************** betweenType ************************
 
-
+interface AllCombine extends simpleOperation, includeType, patternType, betweenType, simpleOperation {
+}
 
 export interface AndOrCondition extends simpleOperation, includeType, patternType, betweenType {
-    "$and"?: simpleOperation,
-    "$or"?: simpleOperation,
+    "$and"?: AllCombine,
+    "$or"?: AllCombine,
     [field_name: string]: unknown
 }
 
