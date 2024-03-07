@@ -9,5 +9,5 @@
 package-lock.json
 tsconfig.json
 
-/lib/*.ts
+/lib copy
 index.ts

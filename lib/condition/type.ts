@@ -86,7 +86,7 @@ interface betweenType {
 interface AllCombine extends simpleOperation, includeType, patternType, betweenType, simpleOperation {
 }
 
-export interface AndOrCondition extends simpleOperation, includeType, patternType, betweenType {
+export interface condition extends simpleOperation, includeType, patternType, betweenType {
     "$and"?: AllCombine,
     "$or"?: AllCombine,
     [field_name: string]: unknown

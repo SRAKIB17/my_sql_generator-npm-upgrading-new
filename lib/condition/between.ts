@@ -1,5 +1,5 @@
 /**
- * Defines the structure of the "between" condition object.
+ * Defines the structure for the "between" condition in a SQL query.
  */
 export type between = {
     [field_name: string]: {
@@ -9,7 +9,7 @@ export type between = {
 }
 
 /**
- * Defines the structure of the "betweenType" interface.
+ * Defines the structure for the between condition type, which includes "$between" and "$not_between".
  */
 export interface betweenType {
     "$between"?: between | {
@@ -23,17 +23,14 @@ export interface betweenType {
 }
 
 /**
- * Processes pattern conditions recursively.
- * @param conditions - The between or pattern condition object.
- * @param operatorKeyword - The keyword to be used before the condition.
- * @param subOperator - The sub-operator to be used between multiple conditions.
- * @returns The generated pattern conditions as a string.
+ * Processes the "between" conditions recursively to generate SQL statements.
+ * @param conditions The "between" conditions to be processed.
+ * @param operatorKeyword The keyword for the SQL operator, if any.
+ * @param subOperator The sub-operator for combining conditions.
+ * @returns The processed SQL conditions.
  */
 export function processBetweenConditions(
-    conditions: between | {
-        "$or"?: between,
-        "$and"?: between
-    },
+    conditions: between | { "$or"?: between, "$and"?: between },
     operatorKeyword: string,
     subOperator: string
 ) {
@@ -55,10 +52,10 @@ export function processBetweenConditions(
 }
 
 /**
- * Generates SQL-like BETWEEN conditions based on the provided input.
- * @param condition - The betweenType object containing conditions.
- * @param subOperator - The sub-operator to be used between multiple conditions.
- * @returns The generated BETWEEN conditions as a string.
+ * Generates SQL conditions for the "between" type.
+ * @param condition The "between" conditions to be processed.
+ * @param subOperator The sub-operator for combining conditions.
+ * @returns The SQL conditions for the "between" type.
  */
 export function betweenConditions(condition: betweenType, subOperator = 'AND') {
     let sqlConditions = "";

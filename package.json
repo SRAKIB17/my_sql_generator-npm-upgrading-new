@@ -1,7 +1,7 @@
 {
-  "name": "mysqlfssxxdfsdf",
-  "version": "1.1.111",
-  "description": " It provides a set of methods or functions that allow you to construct MySQL queries programmatically, making it easier to generate complex queries or customize queries based on specific criteria.",
+  "name": "mysql-query-geniex",
+  "version": "1.00.01",
+  "description": "Your ultimate companion for MySQL database management, featuring an intuitive query builder and advanced SQL generation capabilities to streamline complex database operations.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -25,7 +25,7 @@
     "node",
     "generator"
   ],
-  "devDependencies": {
-    "typescript": "^5.3.3"
+  "dependencies": {
+    "typescript": "^5.4.2"
   }
 }

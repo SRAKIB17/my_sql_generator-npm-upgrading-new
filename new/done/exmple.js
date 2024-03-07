@@ -1,11 +1,11 @@
-const inputObject = {
+const condition = {
     "$and": {
-        "!=": { "field6": 60 },
-        "=": { "field81": 10 },
-    },
-    "$or": {
-        "=": { "field1": 10 },
-        ">": { "field2": 200 },
+        "field1": { "=": 10 },
+        "field2": { "$not_include": { "value1": [1, 2, 3], "value2": [4, 5, 6] } },
+        "$or": {
+            "field3": { "$pattern": { "subfield": "pattern*" } },
+            "field4": { "$between": { "$from": 10, "$to": 20 } }
+        }
     },
     "$pattern": {
         test2: `%5`,
