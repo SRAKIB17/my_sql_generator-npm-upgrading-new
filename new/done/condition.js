@@ -71,6 +71,24 @@ function simpleOperationToSQL(operation) {
     return `${field} ${operator} ${value}`;
 }
 
+function simpleOperationCondition({ conditions, type, subOperator }) {
+    let subCondition = [];
+    if (Array.isArray(conditions)) {
+        const fieldConditions = conditions?.map(condition => {
+            const operator = Object?.keys(condition)?.[0];
+            const value = condition[operator];
+            return `(${type} ${operator} ${JSON.stringify(value)})`;
+        })?.join(` ${subOperator} `);
+        subCondition.push(fieldConditions)
+    }
+    else {
+        const operator = Object.keys(conditions)[0];
+        const value = conditions?.[operator];
+        subCondition.push(`(${type} ${operator} ${JSON.stringify(value)})`);
+    }
+    return subCondition.join(` ${subOperator} `);
+}
+
 function recursionGenerateMySql({ type, conditions, subOperator }) {
 
     if (["$not_between", "$between"]?.includes(type)) {
@@ -90,21 +108,7 @@ function recursionGenerateMySql({ type, conditions, subOperator }) {
         return `(${convertInputToSQL(conditions, subOperator)})`;
     }
     else {
-        let subCondition = [];
-        if (Array.isArray(conditions)) {
-            const fieldConditions = conditions?.map(condition => {
-                const operator = Object?.keys(condition)?.[0];
-                const value = condition[operator];
-                return `(${type} ${operator} ${JSON.stringify(value)})`;
-            })?.join(` ${subOperator} `);
-            subCondition.push(fieldConditions)
-        }
-        else {
-            const operator = Object.keys(conditions)[0];
-            const value = conditions?.[operator];
-            subCondition.push(`(${type} ${operator} ${JSON.stringify(value)})`);
-        }
-        return subCondition.join(` ${subOperator} `);
+        return simpleOperationCondition({ conditions: conditions, type: type, subOperator });
     }
 }
 
@@ -117,19 +121,19 @@ const inputObject = {
         ],
         "field81": { "!=": 60 },
         "field814": { "!=": 60 },
-        // "$pattern": {
-        //     test2: `%5`,
-        //     "$and": {
-        //         test3: `%64%`,
-        //         test14: `%644`,
-        //         test24: `%5`,
-        //     },
-        //     "$or": {
-        //         test: `%64%`,
-        //         test1: `%644`,
-        //         test2: `%5`,
-        //     }
-        // },
+        "$pattern": {
+            test2: `%5`,
+            "$and": {
+                test3: `%64%`,
+                test14: `%644`,
+                test24: `%5`,
+            },
+            "$or": {
+                test: `%64%`,
+                test1: `%644`,
+                test2: `%5`,
+            }
+        },
     },
     "field1": { "=": 10 },
     "field2": { "=": 200 },

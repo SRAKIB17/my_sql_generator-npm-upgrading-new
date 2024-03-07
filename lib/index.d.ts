@@ -1,12 +1,13 @@
 import {
-    condition,
     betweenConditions,
     betweenType,
+    condition,
     includeConditions,
     includeType,
     patternConditions,
     patternType,
-    simpleOperation,
+    simpleOperationConditions,
+    simpleOperationType,
 } from "./condition";
 import genQueryDeleteSql from "./genQueryDeleteSql";
 import genQueryInsertSql from "./genQueryInsertSql";
@@ -23,6 +24,7 @@ export {
     genQueryRdmsSql,
     genQuerySelectSql,
     genQueryUpdateSql, includeConditions, includeType, patternConditions, patternType,
-    simpleOperation
+    simpleOperationConditions,
+    simpleOperationType
 };
 
