@@ -1,12 +1,13 @@
 // ! ***************** simpleOperation ************************
 
 interface simpleOperation {
-    "="?: { [field_name: string]: number | string | unknown },
-    ">"?: { [field_name: string]: number | string | unknown },
-    "<"?: { [field_name: string]: number | string | unknown },
-    ">="?: { [field_name: string]: number | string | unknown },
-    "<="?: { [field_name: string]: number | string | unknown },
-    "!="?: { [field_name: string]: number | string | unknown }
+    [field_name: string]:
+    { "="?: number | string | unknown } |
+    { ">"?: number | string | unknown } |
+    { "<"?: number | string | unknown } |
+    { ">="?: number | string | unknown } |
+    { "<="?: number | string | unknown } |
+    { "!="?: number | string | unknown }
 }
 // ! ***************** simpleOperation ************************
 
