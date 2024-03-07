@@ -90,14 +90,7 @@ function recursionGenerateMySql({ type, conditions, subOperator }) {
         return `(${convertInputToSQL(conditions, subOperator)})`;
     }
     else {
-        // const simpleOperations = JSON.stringify(conditions).match(simpleOperationRegex);
         let subCondition = [];
-        // if (simpleOperations) {
-        //     simpleOperations.forEach(operation => {
-        //         subCondition.push(`(${simpleOperationToSQL(operation)})`);
-        //     });
-        // }
-
         if (Array.isArray(conditions)) {
             const fieldConditions = conditions?.map(condition => {
                 const operator = Object?.keys(condition)?.[0];

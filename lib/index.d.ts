@@ -1,10 +1,10 @@
 import {
-    BetweenConditions,
-    Condition,
-    IncludeConditions,
-    PatternConditions,
+    condition,
+    betweenConditions,
     betweenType,
+    includeConditions,
     includeType,
+    patternConditions,
     patternType,
     simpleOperation,
 } from "./condition";
@@ -16,18 +16,13 @@ import genQuerySelectSql from "./genQuerySelectSql";
 import genQueryUpdateSql from "./genQueryUpdateSql";
 
 export {
-    BetweenConditions,
-    Condition,
-    IncludeConditions,
-    PatternConditions,
-    betweenType,
+    condition as Condition, betweenConditions, betweenType,
     genQueryDeleteSql,
     genQueryInsertSql,
     genQueryMultipleInsertSql,
     genQueryRdmsSql,
     genQuerySelectSql,
-    genQueryUpdateSql,
-    includeType,
-    patternType,
-    simpleOperation,
+    genQueryUpdateSql, includeConditions, includeType, patternConditions, patternType,
+    simpleOperation
 };
+
