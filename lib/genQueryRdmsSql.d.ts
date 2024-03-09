@@ -30,7 +30,7 @@ interface RelationKey {
  * Defines the structure for relation details.
  */
 interface RelationDetails {
-    relation?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN';
+    relation?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN';
     table1?: string;
     table2?: string;
     table3?: string;

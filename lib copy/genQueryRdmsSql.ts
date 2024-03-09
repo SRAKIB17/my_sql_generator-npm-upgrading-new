@@ -120,7 +120,7 @@ const genQueryRdmsSql = ({
     },
     relation_key?: {
         "on"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -131,7 +131,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on1"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -142,7 +142,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on2"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -153,7 +153,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on3"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -164,7 +164,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on4"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -175,7 +175,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on5"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -186,7 +186,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on6"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
@@ -197,7 +197,7 @@ const genQueryRdmsSql = ({
             "table8"?: string,
         },
         "on7"?: {
-            "relation"?: 'JOIN' | 'INNER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
+            "relation"?: 'JOIN' | 'INNER JOIN' | 'OUTER JOIN' | 'CROSS JOIN' | 'RIGHT JOIN' | 'LEFT JOIN',
             "table1"?: string,
             "table2"?: string,
             "table3"?: string,
