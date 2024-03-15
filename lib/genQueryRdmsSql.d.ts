@@ -67,14 +67,14 @@ interface LimitSkip {
  * Defines the structure for sorting criteria.
  */
 interface Sort {
-    table1?: [string, number];
-    table2?: [string, number];
-    table3?: [string, number];
-    table4?: [string, number];
-    table5?: [string, number];
-    table6?: [string, number];
-    table7?: [string, number];
-    table8?: [string, number];
+    table1?: [string, 0 | 1];
+    table2?: [string, 0 | 1];
+    table3?: [string, 0 | 1];
+    table4?: [string, 0 | 1];
+    table5?: [string, 0 | 1];
+    table6?: [string, 0 | 1];
+    table7?: [string, 0 | 1];
+    table8?: [string, 0 | 1];
 }
 
 /**
